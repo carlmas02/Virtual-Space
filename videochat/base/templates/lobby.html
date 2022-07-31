@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+
+{% block content  %}
+
+<div>
+
+	<h1>Welcome to videochat</h1>
+
+	<form  method="POST" id = 'form' >
+		
+		<input type="text" name="room">
+
+		<input type="submit" value = 'join meet'>
+
+	</form>
+
+
+</div>
+
+
+<script type="text/javascript">
+	
+	let form = document.getElementById('form');
+
+
+	let handleSubmit = async (e) =>{
+
+		e.preventDefault();
+
+		let room = e.target.room.value ;
+
+		let response = await fetch(`/get-token/?channel=${room}`)
+		let data = await response.json()
+
+		let UID = data.uid
+		let token = data.token
+
+		console.log(data)
+
+		sessionStorage.setItem('UID',UID)
+		sessionStorage.setItem('token',token)
+		sessionStorage.setItem('room',room)
+
+		window.open('/room/','_self')
+
+
+	}
+
+	form.addEventListener('submit',handleSubmit);
+
+</script>
+
+
+{% endblock content %} 

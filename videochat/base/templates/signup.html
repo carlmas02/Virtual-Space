@@ -1,0 +1,22 @@
+
+
+	<form method="POST" >
+		
+		{% csrf_token %}
+		<input type="text" name="name" placeholder="name">
+		<br>
+		<input type="text" name="username" placeholder="uname">
+		<br>
+		<input type="text" name="email" placeholder="email">
+		<br>
+		<input type="text" name="password" placeholder="password">
+		<br>
+
+		<input type="checkbox" name="moderator" value='1' > Moderator
+
+		<br>
+		<input type="submit" name="">
+
+	</form>
+
+	
