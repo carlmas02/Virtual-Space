@@ -18,6 +18,11 @@
 
 </div>
 
+<div >
+	<h1 id ='text'></h1>
+</div>
+
+
 
 <script type="text/javascript">
 	
@@ -30,20 +35,30 @@
 
 		let room = e.target.room.value ;
 
-		let response = await fetch(`/get-token/?channel=${room}`)
-		let data = await response.json()
+		let response = await fetch(`/validate-room/?channel=${room}`);
 
-		let UID = data.uid
-		let token = data.token
+		let data = await response.json();
 
-		console.log(data)
+		if(data.response=='success'){
+			let response = await fetch(`/get-token/?channel=${room}`)
+			let data = await response.json()
 
-		sessionStorage.setItem('UID',UID)
-		sessionStorage.setItem('token',token)
-		sessionStorage.setItem('room',room)
+			let UID = data.uid
+			let token = data.token
 
-		window.open('/room/','_self')
+			console.log(data)
 
+			sessionStorage.setItem('UID',UID)
+			sessionStorage.setItem('token',token)
+			sessionStorage.setItem('room',room)
+
+			window.open('/room/','_self')
+
+		}
+		else {
+			text = document.getElementById('text')
+			text.innerHTML = 'no room access'
+		}
 
 	}
 

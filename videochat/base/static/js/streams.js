@@ -17,6 +17,8 @@ let remoteUsers = {}
 
 let joinAndDisplayLocalStream  = async () => {
 
+	console.log('host')
+
 	document.getElementById('room-name').innerText = CHANNEL
 
 	client.on('user-published',handleUserJoined);
@@ -51,6 +53,8 @@ let joinAndDisplayLocalStream  = async () => {
 
 
 let handleUserJoined = async (user,mediaType) =>{
+
+	console.log('remote')
 
 	remoteUsers[user.id] = user
 
@@ -148,5 +152,3 @@ video.addEventListener('click',toggleCamera);
 audio = document.getElementById('audio')
 audio.addEventListener('click',toggleMic);
 
-
-console.log(remoteUsers)

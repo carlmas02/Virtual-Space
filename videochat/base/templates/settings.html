@@ -1,20 +1,39 @@
 
-
-
-
-
-
-
- <form method="POST">
-		{% csrf_token %}
-
-	<select name="room">
+<div>
+	<select name="room" id='get-user' >
 
 	{% for room in rooms %}
+
 		<option value="{{room}}" >{{room}}</option>
 
 	{% endfor %}
+
 	</select>
+
+</div>
+
+
+<div class="user-data">
+	
+</div>
+
+
+
+<br>
+Current users in room :	
+<ul id="id01">
+	{% for x in data %}
+  <li >{{x}}</li>
+	{% endfor %}
+</ul>
+
+<br><br>
+
+
+<form method="POST">
+		{% csrf_token %}
+
+	
 
 	<br>
 
@@ -27,3 +46,81 @@
 
 
 </form>
+
+
+
+
+<div>
+	
+	<button  id = 'start-meet'> start meet </button>
+
+
+
+</div>
+
+
+<script type="text/javascript">
+	
+	let form = document.getElementById('start-meet');
+
+
+	let handleSubmit = async (e) =>{
+
+		e.preventDefault();
+
+		let room = 'js' ;
+
+		let response = await fetch(`/get-token/?channel=${room}`)
+			
+		let data = await response.json()
+
+
+		let UID = data.uid
+		let token = data.token
+
+		sessionStorage.setItem('UID',UID)
+		sessionStorage.setItem('token',token)
+		sessionStorage.setItem('room',room)
+
+		window.open('/room/','_self')
+
+
+	}
+
+	form.addEventListener('click',handleSubmit);
+
+
+	let data = document.getElementById('get-user')
+
+	let getUserData = async (e) =>{
+		let text = "";
+		e.preventDefault();
+
+		let room = data.options[data.selectedIndex].value;
+
+		let response = await fetch(`/room-user/?room=${room}`)
+			
+		let user_data = await response.json()
+
+		console.log(user_data.response)
+
+		user_data.response.forEach(myFunction);
+
+		document.getElementById("user_data").innerHTML = text;
+		 
+		function myFunction(item, index) {
+		  text += index + ": " + item + "<br>"; 
+		}
+
+
+		// console.log(user_data)
+		// w3.displayObject("id01", data);
+		
+
+	}
+
+	data.addEventListener('change',getUserData);
+	
+
+
+</script>
