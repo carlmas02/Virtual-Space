@@ -14,7 +14,7 @@ class Profile(models.Model):
 
 class Room(models.Model):
 	user = models.ForeignKey(User,on_delete= models.CASCADE,default="")
-	name = models.TextField()
+		 = models.TextField()
 	token = models.TextField()
 	uid = models.IntegerField()
 

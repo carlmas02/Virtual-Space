@@ -152,7 +152,7 @@ def login_user(request):
 
 
 def room_user(request):
-	room = request.GET['room']
+	room = request.POST['room']
 	print(room)
 	rooms = Room.objects.filter(user =request.user)
 	
@@ -168,27 +168,11 @@ def room_user(request):
 
 	# print(obj)
 
-	# context = {'rooms':rooms,'data':obj}
-	# print(context)
-	# return render(request,'settings.html',context)
+	context = {'rooms':rooms,'data':obj}
+	print(context)
+	return render(request,'settings.html',context)
 
 	return JsonResponse({'response':obj},safe =False)		
 
 
-
-# <form method="POST" action="/room-user/" >
-# 			{% csrf_token %}
-# 	<select name="room" id='get-user' >
-
-# 	{% for room in rooms %}
-
-# 		<option value="{{room}}" >{{room}}</option>
-
-# 	{% endfor %}
-
-# 	</select>
-
-# 	<input type="submit" name="">
-
-# 	</form>
 		

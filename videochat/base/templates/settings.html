@@ -1,14 +1,14 @@
 
-<div>
-	<select name="room" id='get-user' >
+<!-- <div>
+	
 
-	{% for room in rooms %}
+	<form method="POST" action="/room-user/" >
+			{% csrf_token %}
+		
 
-		<option value="{{room}}" >{{room}}</option>
+		<input type="submit" name="">
 
-	{% endfor %}
-
-	</select>
+	</form>
 
 </div>
 
@@ -27,13 +27,21 @@ Current users in room :
 	{% endfor %}
 </ul>
 
-<br><br>
+<br><br> 
+ -->
 
-
-<form method="POST">
+<form method="POST" action="/setup/">
 		{% csrf_token %}
 
-	
+	<select name="room" id='get-user' >
+
+		{% for room in rooms %}
+
+			<option value="{{room}}" >{{room}}</option>
+
+		{% endfor %}
+
+	</select>
 
 	<br>
 
@@ -90,36 +98,43 @@ Current users in room :
 	form.addEventListener('click',handleSubmit);
 
 
-	let data = document.getElementById('get-user')
+	let data = document.getElementById('get-user');
 
-	let getUserData = async (e) =>{
-		let text = "";
-		e.preventDefault();
 
-		let room = data.options[data.selectedIndex].value;
+	$.ajax(
+    {
+        type:"GET",
+        url: "/likepost",
+        data:{
+                 post_id: catid
+        },
+        success: function( data ) 
+        {
+            $( '#like'+ catid ).remove();
+            $( '#message' ).text(data);
+        }
+     })
 
-		let response = await fetch(`/room-user/?room=${room}`)
+
+	console.log(data);
+	// let getUserData = async (e) =>{
+	// 	let text = "";
+	// 	e.preventDefault();
+
+	// 	let room = data.options[data.selectedIndex].value;
+
+	// 	let response = await fetch(`/room-user/?room=${room}`)
 			
-		let user_data = await response.json()
+	// 	let user_data = await response.json()
 
-		console.log(user_data.response)
+	// 	console.log(user_data.response)
 
-		user_data.response.forEach(myFunction);
+	// 	user_data.response.forEach(myFunction);
 
-		document.getElementById("user_data").innerHTML = text;
-		 
-		function myFunction(item, index) {
-		  text += index + ": " + item + "<br>"; 
-		}
-
-
-		// console.log(user_data)
-		// w3.displayObject("id01", data);
 		
+	// }
 
-	}
-
-	data.addEventListener('change',getUserData);
+	// data.addEventListener('change',getUserData);
 	
 
 
