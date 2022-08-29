@@ -3,27 +3,42 @@
 
 {% block content  %}
 
-<div>
+<div class="body" background="{% static 'assets/bg.png' %}">
+    <div class="tri"></div>
 
-	<h1>Welcome to videochat</h1>
+    <div class="ic">
+      <div class="action-btn">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        <!-- <i class="fa fa-cogs" aria-hidden="true"></i> -->
+      </div>
+    </div>
 
-	<form  method="POST" id = 'form' >
-		
-		<input type="text" name="room">
+    <!-- {% block content %} {% endblock content %} -->
 
-		<input type="submit" value = 'join meet'>
+    <div class="logo">
+      <img src="{% static 'assets/LOGO.png' %}" />
+      <span class="help-text"> VirtualSpace </span>
+    </div>
+    <div class="lbg"></div>
 
-	</form>
+    <div class="main">
+      <div class="border">
+        <form method = "POST" id = 'form'>
+        <input
+          type="text"
+          class="input-field"
+          placeholder="Type in Code"
+          required
+        />
+        <input type="submit" value = 'join meet' class="join"><b>Join Room</b></button>
+          </form>
+      </div>
+    </div>
 
-
-</div>
-
-<div >
-	<h1 id ='text'></h1>
-</div>
-
-
-
+   
+</div> 
 <script type="text/javascript">
 	
 	let form = document.getElementById('form');
@@ -65,6 +80,4 @@
 	form.addEventListener('submit',handleSubmit);
 
 </script>
-
-
 {% endblock content %} 
