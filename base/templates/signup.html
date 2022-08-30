@@ -1,15 +1,18 @@
+{% extends 'main.html'%}
 
-
-	<form method="POST" >
+{% block content  %}
+<div class="login-page">
+          <div class="form-box">
+	<form method="POST" class="input-group-register">
 		
 		{% csrf_token %}
-		<input type="text" name="name" placeholder="name">
+		<input type="text" class="input-field" name="name" placeholder="name">
 		<br>
-		<input type="text" name="username" placeholder="uname">
+		<input type="text" class="input-field" name="username" placeholder="uname">
 		<br>
-		<input type="text" name="email" placeholder="email">
+		<input type="text" class="input-field" name="email" placeholder="email">
 		<br>
-		<input type="text" name="password" placeholder="password">
+		<input type="text" class="input-field" name="password" placeholder="password">
 		<br>
 
 		<input type="checkbox" name="moderator" value='1' > Moderator
@@ -18,5 +21,7 @@
 		<input type="submit" name="">
 
 	</form>
+</div>
+</div>
 
-	
+{% endblock content %} 
