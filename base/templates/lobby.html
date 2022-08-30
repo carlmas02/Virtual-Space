@@ -22,10 +22,11 @@
 
     <div class="main">
       <div class="border">
-        <form method = "POST" id = 'form'>
+        <form method = "POST" id = 'form' >
         <input
           type="text"
           class="input-field"
+          name = "room"
           placeholder="Type in Code"
           required
         />
@@ -51,26 +52,28 @@
 
 		let data = await response.json();
 
-		if(data.response=='success'){
-			let response = await fetch(`/get-token/?channel=${room}`)
-			let data = await response.json()
+    console.log(data)
 
-			let UID = data.uid
-			let token = data.token
+		// if(data.response=='success'){
+		// 	let response = await fetch(`/get-token/?channel=${room}`)
+		// 	let data = await response.json()
 
-			console.log(data)
+		// 	let UID = data.uid
+		// 	let token = data.token
 
-			sessionStorage.setItem('UID',UID)
-			sessionStorage.setItem('token',token)
-			sessionStorage.setItem('room',room)
+		// 	console.log(data)
 
-			window.open('/room/','_self')
+		// 	sessionStorage.setItem('UID',UID)
+		// 	sessionStorage.setItem('token',token)
+		// 	sessionStorage.setItem('room',room)
 
-		}
-		else {
-			text = document.getElementById('text')
-			text.innerHTML = 'no room access'
-		}
+		// 	window.open('/room/','_self')
+
+		// }
+		// else {
+		// 	text = document.getElementById('text')
+		// 	text.innerHTML = 'no room access'
+		// }
 
 	}
 
