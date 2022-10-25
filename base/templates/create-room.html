@@ -1,23 +1,15 @@
+create an instant room :
 
-	
-	create an instant room :
+<button>Instant room</button>
 
-	<button> Instant room </button>
+<br />
 
-	<br>
+<form method="POST">
+  {% csrf_token %} Create a new room for users :
 
-	<form method ='POST'>
-		
-		{% csrf_token %}
-		Create a new room for users :
+  <br />
 
-		<br>
-
-		<input type="text" name="room" placeholder="ROome name">
-		<br>
-		<input type="submit" name="">
-
-
-	</form>
-
-
+  <input type="text" name="room" placeholder="Roome name" />
+  <br />
+  <input type="submit" name="" />
+</form>
