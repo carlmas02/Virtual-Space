@@ -1,5 +1,6 @@
 from datetime import datetime
 from email.policy import default
+from statistics import mode
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -32,5 +33,6 @@ class Room_User(models.Model):
 
 
 class Message(models.Model):
+	room = models.CharField(max_length = 1000,default = '')
 	data = models.CharField(max_length = 1000)
 	date = models.DateTimeField(default= datetime.now,blank = True)

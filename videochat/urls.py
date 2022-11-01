@@ -9,6 +9,7 @@ urlpatterns = [
     path('get-token/',getToken),
     path('',lobby,name = 'lobby'),
     path('room/',room,name = 'room'),
+    path('room2/',room2,name = 'room2'),
     path('sign-up/',signup,name = 'signup'),
     path('setup/',settings,name = 'setup'),
     path('create-room/',create,name = 'create-room'),

@@ -20,6 +20,10 @@ def room(request):
 
 	return render(request,'room.html')
 
+def room2(request):
+
+	return render(request,'room2.html')
+
 def signup(request):
 	if request.method == "POST":
 		username = request.POST['username']
@@ -180,13 +184,15 @@ def addmsg(request):
 	print('hi')
 	if request.method == "POST":
 		msg = request.POST['message']
-		new = Message.objects.create(data= msg)
+		room = request.POST['room']
+		new = Message.objects.create(data= msg,room= room)
 		new.save()
 		return HttpResponse("Msg sent")
 
 
 
 def getmsg(request):
-	data = Message.objects.all()
+	room_ = request.GET['room']
+	data = Message.objects.filter(room = room_)
 
 	return JsonResponse({'data':list(data.values())},safe=False)

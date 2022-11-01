@@ -33,6 +33,12 @@
           placeholder="Type in Code"
           required
         />
+
+        <br>
+            iiii
+        <input style="padding : 1rem;" name="teacher" id ='checker'  type="checkbox" value = '1'  /> 
+        <label style="font-weight:700;color:white;"> Join as Instructor </label>
+
         <input type="submit" value = 'join Room' class="join"><b></b></button>
           </form>
       </div>
@@ -43,7 +49,7 @@
 <script type="text/javascript">
 	
 	let form = document.getElementById('form');
-
+  let check = document.getElementById('checker');
 
 	let handleSubmit = async (e) =>{
 
@@ -51,6 +57,9 @@
 
 		let room = e.target.room.value ;
 
+    let val = e.target.teacher.value;
+
+    console.log(val);
 		// let response = await fetch(`/validate-room/?channel=${room}`);
 
 		// let data = await response.json();
@@ -58,6 +67,10 @@
   //   console.log(data)
 
 		// if(data.response=='success'){
+
+
+
+
 			let response = await fetch(`/get-token/?channel=${room}`)
 			let data = await response.json()
 
@@ -70,7 +83,17 @@
 			sessionStorage.setItem('token',token)
 			sessionStorage.setItem('room',room)
 
-			window.open('/room/','_self')
+      if(check.checked ==true){
+        window.open('/room2/','_self')
+      }else{
+        window.open('/room/','_self')
+      }
+
+			
+
+
+
+
 
 		// }
 		// else {
