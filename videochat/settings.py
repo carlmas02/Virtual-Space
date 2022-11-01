@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -13,8 +13,9 @@ SECRET_KEY = 'django-insecure-6m!37=1i_mld+c96j1y^xf6w1us=y@*i%%zpqm7i2xh9^c2o26
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['virtualspacemeet.herokuapp.com','127.0.0.1']
 
+CORS_ALLOW_ALL_ORIGINS=True
 
 # Application definition
 
@@ -26,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base',
+    'corsheaders'
     # 'django.contrib.sites',
     # 'allauth',
     # 'allauth.account',
@@ -44,12 +46,15 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'videochat.urls'
@@ -78,8 +83,12 @@ WSGI_APPLICATION = 'videochat.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd89opcn4sel1ru',
+        'USER': 'porcahjbmktllo',
+        'PASSWORD': '1fdffd4a2512466de4a06458a075603f4087b0e4820cf07d9e8cd5688ec6c94b',
+        'HOST': 'ec2-54-160-200-167.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -120,12 +129,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfile')
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS  = [
-    
-    BASE_DIR /'static'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
 ]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 
@@ -133,5 +142,3 @@ STATICFILES_DIRS  = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-

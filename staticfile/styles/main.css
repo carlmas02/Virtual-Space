@@ -1,0 +1,139 @@
+#video-streams{
+	display: flex;
+	justify-content: space-evenly;
+
+}
+
+
+.video-container{
+
+	width :25vw;
+	height: 50vh;
+
+}
+
+.video-player{
+	width: 100%;
+	height: 100%;
+
+}
+
+.body{
+	min-height: 100vh;
+    width: 100%;
+	background-image: url("bg.png") ;
+	backdrop-filter: blur(10px);
+
+	/* background: rgba(34, 35, 102, 0.39); */
+	/* filter: blur(8px); */
+	/* -webkit-filter: blur(8px); */
+
+	background-position:100%;
+	/* background-repeat: no-repeat; */
+	/* background-size: cover; */
+}
+.lbg{
+	display: absolute;
+	width: 17rem;
+	height: 5rem;
+		
+	background: rgba(255, 255, 255, 0.849);
+	border-radius: 1.5rem;
+	margin-left: 1.5rem;
+	margin-top: -4.9rem;
+
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	font-size: 2rem;
+	padding-top: 1rem;
+
+}
+img {
+	display: flex;
+	align-items: center;
+	padding-left: 2rem;
+	padding-top: 1rem;
+	padding-right: 1rem;
+	width: 8rem;
+	cursor: pointer;
+
+}
+.help-text{
+	padding-top: 1rem;
+	font-family: 'Staatliches';
+	padding-right: 67rem;
+	cursor: pointer;
+}
+.action-btn {
+	margin-top: -0.1rem;
+	cursor: pointer;
+	align-items: center;
+	font-size: 1.9rem;
+	
+	
+}
+.fa {
+	padding-left: 0.9rem;
+}
+.fa:hover{
+	color: rgb(2, 2, 129);
+}
+.join {
+	display: block;
+	color: #111;
+	font-size: 1.7rem;
+	cursor: pointer;
+	font-family: 'Staatliches';
+	border-radius: 1rem;
+	padding: 0.5rem 1.5rem;
+	margin-left: 20rem;
+	
+	
+}
+.join:hover {
+	background-color: black;
+	color: white;
+}
+.join{
+	margin-top: -3.78rem;
+}
+.main{
+	padding-left: 65rem;
+	padding-top: 20rem;
+}
+.input-field{
+	padding: 0.5rem 1.5rem;
+	border-radius: 1rem;
+	font-size: 1.7rem;
+	font-family: 'Staatliches';
+	margin-left: 0.8rem;
+	margin-top: 0.5rem;
+}
+.ic{
+	position: absolute;
+	width: 155px;
+	height: 45px;
+	right:19px;
+	top: 47px;
+	border-radius: 1rem;
+
+	background: #0033ffd8;
+}
+.border {
+	display: absolute;
+	width: 30rem;
+	height: 5rem;
+		
+	background: rgba(0, 0, 0, 0.322);
+	border-radius: 1.5rem;
+	margin-left: -22rem;
+}
+.action-btn:hover .fa-cog:before{
+	content:"\f085";
+	color: rgb(2, 2, 129);
+	font-size: 90%;
+	
+}
