@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Profile)
 admin.site.register(Room)
 admin.site.register(Room_User)
+admin.site.register(Message)

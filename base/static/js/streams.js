@@ -37,7 +37,7 @@ let joinAndDisplayLocalStream  = async () => {
 
 	let player = `<div class = 'video-container' id = 'user-container-${UID}' >
 
-						<div class="video-player" id ='user-${UID}' >
+						<div class = 'video-player' id ='user-${UID}' >
 							
 						</div>
 
@@ -116,11 +116,9 @@ let leaveAndRemoveLocalStream = async () => {
 let toggleCamera = async(e) => {
 	if(localTracks[1].muted==false){
 		await localTracks[1].setMuted(true)
-		e.target.style.color = 'red';
 	}
 	else if(localTracks[1].muted){
 		await localTracks[1].setMuted(false)
-		e.target.style.color = 'green';
 	}
 
 
@@ -129,11 +127,9 @@ let toggleCamera = async(e) => {
 let toggleMic = async(e) => {
 	if(localTracks[0].muted==false){
 		await localTracks[0].setMuted(true)
-		e.target.style.color = 'red';
 	}
 	else if(localTracks[0].muted){
 		await localTracks[0].setMuted(false)
-		e.target.style.color = 'green';
 	}
 
 

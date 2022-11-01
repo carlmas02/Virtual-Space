@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from django.http import request,HttpResponse
 from agora_token_builder import RtcTokenBuilder
 import random
@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate,login
 from .models import *
 from django.contrib.auth import authenticate,login
 import json
-
+from django.views.decorators.csrf import csrf_exempt
 
 def lobby(request):
 
@@ -175,4 +175,18 @@ def room_user(request):
 	return JsonResponse({'response':obj},safe =False)		
 
 
-		
+@csrf_exempt	
+def addmsg(request):
+	print('hi')
+	if request.method == "POST":
+		msg = request.POST['message']
+		new = Message.objects.create(data= msg)
+		new.save()
+		return HttpResponse("Msg sent")
+
+
+
+def getmsg(request):
+	data = Message.objects.all()
+
+	return JsonResponse({'data':list(data.values())},safe=False)

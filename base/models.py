@@ -1,3 +1,5 @@
+from datetime import datetime
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -14,7 +16,7 @@ class Profile(models.Model):
 
 class Room(models.Model):
 	user = models.ForeignKey(User,on_delete= models.CASCADE,default="")
-	name	 = models.TextField()
+	name = models.TextField()
 	token = models.TextField()
 	uid = models.IntegerField()
 
@@ -27,3 +29,8 @@ class Room_User(models.Model):
 
 	def __str__(self):
 		return str(self.room)
+
+
+class Message(models.Model):
+	data = models.CharField(max_length = 1000)
+	date = models.DateTimeField(default= datetime.now,blank = True)

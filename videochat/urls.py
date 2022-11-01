@@ -14,7 +14,14 @@ urlpatterns = [
     path('create-room/',create,name = 'create-room'),
     path('validate-room/',validate_room,name = 'validate-room'),
     path('room-user/',room_user,name = 'users-room'),
+    path('addmsg',addmsg,name='addmsg'),
+    path('getmsg',getmsg,name='getmsg')
 ]
+
+
+
+
+
 
 
 

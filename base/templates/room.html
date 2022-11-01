@@ -1,37 +1,134 @@
+
+
 {% extends 'main.html' %}
 
 {% load static %}
 
 {% block content  %}
 
-<div>
-
-	{{request.user}}
-
-	<h1 id="room-name"> Room Name :  </h1>
-
-	<p> My Name </p>
-
-	<section class='box' id  = 'video-streams'></section>
 
 
-	<div>
-		
-		<div id = 'audio' ><h1>AUDIO</h1></a>
-		<div id ='video'><h1>VIDEO</h1></div>
-		<div id ='leave'>Leave</div>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/videoroom.css' %}" />
+
+	<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+</head>
+
+<script>
+	$(document).ready(function(){
+
+		setInterval(function(){
+			$.ajax({
+				type: 'GET',
+				url : "/getmsg",
+				success: function(response){
+					console.log(response);
+					$("#display").empty();
+					for (var key in response.data)
+					{	
+						var temp = " <div class='message'> " + response.data[key].data + "</div> "
+						// var temp="<div class='container darker'><b>"+response.messages[key].user+"</b><p>"+response.messages[key].value+"</p><span class='time-left'>"+response.messages[key].date+"</span></div>";
+						$("#display").append(temp);
+					}
+				},
+				error: function(response){
+					alert('An error occured')
+				}
+			});
+		},1000);
+		})
+
+</script>
+
+<div class="mainbody">
+
+	<div class="left">
+
+		<div class="top">
+			<section class='box' id  = 'video-streams'></section>
+		</div>
+
+		<div class="bottom">
+
+			<div style="display: flex">
+				<div id = 'audio'> <img src="{% static 'assets/microphone.png' %}" ></div>
+				<div id ='video'><img src="{% static 'assets/video-818.png' %}" ></div>
+				<div id ='leave'><img src="{% static 'assets/leave.png' %}" ></div>
+			</div>
+
+			<div style="margin-top: 20px;" > Room Name <h2  id="room-name"></h2> </div>  
+
+		</div>
 
 	</div>
 
 
-	<div id = 'test' >
+	<div class="right-chat">
+
+		<div class="chat top-chat">
+
+			<h2 style="padding: 11px;" >Chat Section</h2>
+
+		</div>
 		
-		<h1>test</h1>
+		<div class="chat mid-chat"  id = 'display' >
+
+			<div class="message">
+				<h4 style="display: inline-block ;" >Carl</h4>		heloowwwwwwwwllwll lldldl ldlldl ldlddldldldldl dlddldldldl
+			</div>
+
+			<div class="message">
+				<h4 style="display: inline-block ;" >Carl</h4>		heloowwwwwwwwllwll lldldl ldlldl ldlddldldldldl dlddldldldl
+			</div>
+
+			<div class="message">
+				<h4 style="display: inline-block ;" >Carl</h4>		heloowwwwwwwwllwll lldldl ldlldl ldlddldldldldl dlddldldldl
+			</div>
+
+		</div>
+
+		<div class="chat bottom-chat">
+
+		<form id = 'msgform'>
+
+			
+
+			<input id="msg" placeholder ="Send a message ..." ></input>
+		
+			<button>Send</button>
+		</form>
+
+		</div>
 
 	</div>
-
 
 </div>
+
+
+<script type="text/javascript">
+	$(document).on('submit','#msgform',function(e){
+	  e.preventDefault();
+  
+	  $.ajax({
+		type:'POST',
+		url:'/addmsg',
+		data:{
+			message:$('#msg').val(),
+		  
+		},
+		// success: function(data){
+		//    alert('works');
+		// }
+	  });
+	  document.getElementById('msg').value = ''
+	});
+  </script>
+  
+
+
+
+
 <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.13.0.js' %}"></script>
 
 <script type="text/javascript" src="{% static 'js/streams.js' %}" >
