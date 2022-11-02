@@ -34,9 +34,9 @@
 						$("#display2").append(temp);
 					}
 				},
-				error: function(response){
-					alert('An error occured')
-				}
+				// error: function(response){
+				// 	alert('An error occured')
+				// }
 			});
 		},10000);
 		})
@@ -49,7 +49,7 @@
 		setInterval(function(){
 			$.ajax({
 				type: 'GET',
-				url : "https://vsquiz.herokuapp.com/result/1/3/",
+				url : "https://vsquiz.herokuapp.com/result/1/1/",
 				success: function(response){
 					console.log(response);
 					$("#display").empty();
@@ -59,9 +59,9 @@
 						$("#display").append(temp);
 					}
 				},
-				error: function(response){
-					alert('An error occured')
-				}
+				// error: function(response){
+				// 	alert('An error occured')
+				// }
 			});
 		},1000);
 		})
